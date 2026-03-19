@@ -118,9 +118,29 @@ public class App {
     // João Pedro, Felipe e Luiz
     // =========================================================
     public static void quickSort(int[] vetor, int inicio, int fim) {
-        // TODO: implementar Quick Sort
+         if (inicio < fim) {
+            int pivo = particionar(vetor, inicio, fim);
+            quickSort(vetor, inicio, pivo - 1);
+            quickSort(vetor, pivo + 1, fim);
+        }
     }
+    public static int particionar(int[] vetor, int left, int right){
+        int i = left;
+        int pivo = right;
 
+        for (int j = left; j < right; j++) {
+            if(vetor[j] <= vetor[pivo]){
+                int aux = vetor[j];
+                vetor[j] = vetor[i];
+                vetor[i] = aux;
+                i++;
+            }
+        }
+        int aux = vetor[right];
+        vetor[right] = vetor[i];
+        vetor[i] = aux;
+        return  i;
+    }
     // =========================================================
     // TIM SORT
     // José Miguel, Caio, Lucas, Higor
