@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class App {
@@ -134,8 +135,76 @@ public class App {
     // Natalia, Isabele Louise, Amanda, Lovemika
     // =========================================================
     public static void selectionSort(int[] vetor) {
-        // TODO: implementar Selection Sort
+        //preencher automático
+        preencherVetor(vetor);
+
+        for(int i = 0; i < vetor.length; i++) {
+
+            System.out.print(vetor[i] + " ");
+            
+        }
+
+        System.out.println();
+
+        //preencher manualmente
+        /*for(int i = 0; i < vetor.length; i++) {
+
+            vetor[i] = lerNumeroInt();
+        }*/
+
+        selectionSortDois(vetor);
+	}
+
+    public static void preencherVetor(int[]vetor) {
+
+        Random random = new Random();
+
+        for (int i = 0; i < vetor.length; i++) {
+            vetor[i] = random.nextInt(100) + 1;
+        }
     }
+
+    public static void selectionSortDois(int[] vetor) {
+
+        for (int i = 0; i < vetor.length - 1; i++) {
+            int min = i;
+
+            for (int j = i + 1; j < vetor.length; j++) {
+                if(vetor[j] < vetor[min]) {
+                    min = j;
+                }
+            }
+
+            if(min != i) {
+                int temp = vetor[i];
+                vetor[i] = vetor[min];
+                vetor[min] = temp;
+            }
+        }
+
+        //imprimir vetor
+
+        System.out.println();
+
+        for(int i = 0; i < vetor.length; i++) {
+
+            System.out.print(vetor[i] + " ");
+            
+        }
+
+        System.out.println();
+    }
+
+    public static void lerVetor() {
+		int n = lerInteiro(null, "Digite o tamanho do vetor: ");
+		
+		int[] vetor = new int[n];
+
+		for(int i = 0; i < vetor.length; i++) {
+
+            vetor[i] = lerInteiro(null, "Digite o valor do vetor:");
+        }
+	}
 
     // =========================================================
     // MERGE SORT
