@@ -125,8 +125,78 @@ public class App {
     // TIM SORT
     // José Miguel, Caio, Lucas, Higor
     // =========================================================
+    static int RUN = 32;
+
+    public static void insertionSort(int[] vetor, int esquerda, int direita) {
+		for (int i = esquerda + 1; i <= direita; i++) {
+			int temp = vetor[i];
+			int j = i - 1;
+			while (j >= 0 && vetor[j] > temp && j >= esquerda) {
+				vetor[j + 1] = vetor[j];
+				j--;
+			}
+			vetor[j + 1] = temp;
+		}
+	}
+
+    public static void merge(int[] vetor, int esquerda, int meio, int direita) {
+
+		int tamanhoEsquerda = meio - esquerda + 1;
+		int tamanhoDireita = direita - meio;
+		int[] vetorEsquerda = new int[tamanhoEsquerda];
+		int[] vetorDireita = new int[tamanhoDireita];
+
+		for (int x = 0; x < tamanhoEsquerda; x++) {
+			vetorEsquerda[x] = vetor[esquerda + x];
+		}
+
+		for (int x = 0; x < tamanhoDireita; x++) {
+			vetorDireita[x] = vetor[meio + 1 + x];
+		}
+
+		int i = 0;
+		int j = 0;
+		int k = esquerda;
+
+		while (i < tamanhoEsquerda && j < tamanhoDireita) {
+			if (vetorEsquerda[i] <= vetorDireita[j]) {
+				vetor[k] = vetorEsquerda[i];
+				i++;
+			} else {
+				vetor[k] = vetorDireita[j];
+				j++;
+			}
+			k++;
+		}
+
+		while (i < tamanhoEsquerda) {
+			vetor[k] = vetorEsquerda[i];
+			k++;
+			i++;
+		}
+
+		while (j < tamanhoDireita) {
+			vetor[k] = vetorDireita[j];
+			k++;
+			j++;
+		}
+	}
+
     public static void timSort(int[] vetor) {
-        // TODO: implementar Tim Sort
+        int tamanho = vetor.length;
+
+		for (int i = 0; i < tamanho; i += RUN) {
+			insertionSort(vetor, i, Math.min((i + 31), (tamanho - 1)));
+		}
+
+		for (int size = RUN; size < tamanho; size = 2 * size) {
+			for (int esquerda = 0; esquerda < tamanho; esquerda += 2 * size) {
+				int meio = esquerda + size - 1;
+				int direita = Math.min((esquerda + 2 * size - 1), (tamanho - 1));
+				
+				merge(vetor, esquerda, meio, direita);
+			}
+		}
     }
 
     // =========================================================
