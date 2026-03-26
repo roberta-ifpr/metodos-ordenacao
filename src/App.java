@@ -158,7 +158,22 @@ public class App {
     // Aniela
     // =========================================================
     public static void shellSort(int[] vetor) {
-        // TODO: implementar Shell Sort
+        int gap;
+        for(gap = vetor.length/2; gap > 0; gap = gap / 2) {
+            for(int j = gap; j<vetor.length; j++) {
+                for(int k = j-gap; k>=0; k -= gap) {
+                    if(vetor[k+gap] >= vetor[k]){
+                        break;
+                    }
+                    else {
+                        int temp;
+                        temp = vetor[k+gap];
+                        vetor[k+gap] = vetor[k];
+                        vetor[k] = temp;
+                    }
+                }
+            }
+        }
     }
 
     // =========================================================
