@@ -182,9 +182,38 @@ public class App {
     // Davi Casagrande, Davi Lopes, Gabriel Silva, Daniel
     // =========================================================
     public static void bucketSort(int[] vetor) {
-        // TODO: implementar Bucket Sort
+        int[] balde1 = new int[vetor.length]; 
+        int[] balde2 = new int[vetor.length]; 
+        int[] balde3 = new int[vetor.length];   // 
+//comment
+        int c1 = 0, c2 = 0, c3 = 0;
+
+        for (int i = 0; i < vetor.length; i++) {
+            if (vetor[i] >= 1 && vetor[i] <= 5) {
+                c1 = inserirOrdenado(balde1, c1, vetor[i]);
+            } else if (vetor[i] <= 10) {
+                c2 = inserirOrdenado(balde2, c2, vetor[i]);
+            } else {
+                c3 = inserirOrdenado(balde3, c3, vetor[i]);
+            }
+        }
+    
+        int k = 0;
+        for (int i = 0; i < c1; i++) vetor[k++] = balde1[i];
+        for (int i = 0; i < c2; i++) vetor[k++] = balde2[i];
+        for (int i = 0; i < c3; i++) vetor[k++] = balde3[i];
     }
 
+    private static int inserirOrdenado(int[] balde, int tamanho, int valor) {
+        int i = tamanho - 1;
+        while (i >= 0 && balde[i] > valor) {
+            balde[i + 1] = balde[i];
+            i--;
+        }
+        balde[i + 1] = valor;
+        return tamanho + 1;
+    }
+    
     // =========================================================
     // COUNTING SORT
     // Bruno, Luciano
