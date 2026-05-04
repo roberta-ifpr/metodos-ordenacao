@@ -147,10 +147,27 @@ public class App {
 
     // =========================================================
     // COMB SORT
-    // Habner, Gustavo Miguel, Samuel Asafi
+    // Habner, Gustavo Miguel, Samuel Asafe
     // =========================================================
     public static void combSort(int[] vetor) {
-        // TODO: implementar Comb Sort
+        double gap = vetor.length;
+
+        for (int i = 0; i < vetor.length; i++) {
+            gap = gap / 1.3;
+
+            for (int j = 0; j < vetor.length; j++) {
+
+                if (j <= ((vetor.length - gap) - 1)) {
+
+                    if (vetor[j] > vetor[(int) gap + j]) {
+                        int a = vetor[j];
+                        vetor[j] = vetor[(int) gap + j];
+                        vetor[(int) gap + j] = a;
+                    }
+                }
+            }
+
+        }
     }
 
     // =========================================================
