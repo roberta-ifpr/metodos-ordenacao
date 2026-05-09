@@ -251,7 +251,45 @@ public class App {
     // Bruno, Luciano
     // =========================================================
     public static void countingSort(int[] vetor) {
-        // TODO: implementar Counting Sort
+
+        int maior = Integer.MIN_VALUE;
+
+        for (int i = 0; i < vetor.length; i++) {
+            
+            if (vetor[i] > maior) {
+
+                maior = vetor[i];
+                
+            }
+
+        }
+
+        int[] temp = new int[maior+1];
+
+        for (int i = 0; i < vetor.length; i++) {
+ 
+            temp[vetor[i]]++;
+
+        }
+
+        int indiceSaida = 0;
+
+        for (int i = 0; i < temp.length; i++) {
+
+            if (temp[i] >= 1) {
+                
+                for (int j = 0; j < temp[i]; j++) {
+
+                    vetor[indiceSaida] = i;
+
+                    indiceSaida++;
+
+                }
+
+            }
+
+        }
+
     }
 }
 
